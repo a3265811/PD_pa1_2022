@@ -1,0 +1,98 @@
+_iterNum: 1
+_accGain: 0
+_maxAccGain: 16265
+_moveNum: 66666
+_bestMoveNum: 23630
+initial _cutSize: 47238
+new _cutSize: 30973
+---------------------------------
+_iterNum: 2
+_accGain: 0
+_maxAccGain: 1989
+_moveNum: 66666
+_bestMoveNum: 11418
+initial _cutSize: 30973
+new _cutSize: 28984
+---------------------------------
+_iterNum: 3
+_accGain: 0
+_maxAccGain: 672
+_moveNum: 66666
+_bestMoveNum: 5556
+initial _cutSize: 28984
+new _cutSize: 28312
+---------------------------------
+_iterNum: 4
+_accGain: 0
+_maxAccGain: 277
+_moveNum: 66666
+_bestMoveNum: 1952
+initial _cutSize: 28312
+new _cutSize: 28035
+---------------------------------
+_iterNum: 5
+_accGain: 0
+_maxAccGain: 102
+_moveNum: 66666
+_bestMoveNum: 3450
+initial _cutSize: 28035
+new _cutSize: 27933
+---------------------------------
+_iterNum: 6
+_accGain: 0
+_maxAccGain: 169
+_moveNum: 66666
+_bestMoveNum: 1398
+initial _cutSize: 27933
+new _cutSize: 27764
+---------------------------------
+_iterNum: 7
+_accGain: 0
+_maxAccGain: 42
+_moveNum: 66666
+_bestMoveNum: 634
+initial _cutSize: 27764
+new _cutSize: 27722
+---------------------------------
+_iterNum: 8
+_accGain: 0
+_maxAccGain: 35
+_moveNum: 66666
+_bestMoveNum: 524
+initial _cutSize: 27722
+new _cutSize: 27687
+---------------------------------
+_iterNum: 9
+_accGain: 0
+_maxAccGain: 9
+_moveNum: 66666
+_bestMoveNum: 220
+initial _cutSize: 27687
+new _cutSize: 27678
+---------------------------------
+_iterNum: 10
+_accGain: 0
+_maxAccGain: 1
+_moveNum: 66666
+_bestMoveNum: 60
+initial _cutSize: 27678
+new _cutSize: 27677
+---------------------------------
+_iterNum: 11
+_accGain: 0
+_maxAccGain: 0
+_moveNum: 66666
+_bestMoveNum: 0
+initial _cutSize: 27677
+new _cutSize: 27677
+---------------------------------
+
+==================== Summary ====================
+ Cutsize: 27677
+ Total cell number: 66666
+ Total net number:  88888
+ Cell Number of partition A: 29999
+ Cell Number of partition B: 36667
+=================================================
+
+execution time: 1(sec)

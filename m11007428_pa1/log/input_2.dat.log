@@ -1,0 +1,130 @@
+_iterNum: 1
+_accGain: 0
+_maxAccGain: 1919
+_moveNum: 7000
+_bestMoveNum: 2705
+initial _cutSize: 4470
+new _cutSize: 2551
+---------------------------------
+_iterNum: 2
+_accGain: 0
+_maxAccGain: 227
+_moveNum: 7000
+_bestMoveNum: 974
+initial _cutSize: 2551
+new _cutSize: 2324
+---------------------------------
+_iterNum: 3
+_accGain: 0
+_maxAccGain: 56
+_moveNum: 7000
+_bestMoveNum: 592
+initial _cutSize: 2324
+new _cutSize: 2268
+---------------------------------
+_iterNum: 4
+_accGain: 0
+_maxAccGain: 24
+_moveNum: 7000
+_bestMoveNum: 386
+initial _cutSize: 2268
+new _cutSize: 2244
+---------------------------------
+_iterNum: 5
+_accGain: 0
+_maxAccGain: 14
+_moveNum: 7000
+_bestMoveNum: 324
+initial _cutSize: 2244
+new _cutSize: 2230
+---------------------------------
+_iterNum: 6
+_accGain: 0
+_maxAccGain: 6
+_moveNum: 7000
+_bestMoveNum: 282
+initial _cutSize: 2230
+new _cutSize: 2224
+---------------------------------
+_iterNum: 7
+_accGain: 0
+_maxAccGain: 4
+_moveNum: 7000
+_bestMoveNum: 210
+initial _cutSize: 2224
+new _cutSize: 2220
+---------------------------------
+_iterNum: 8
+_accGain: 0
+_maxAccGain: 1
+_moveNum: 7000
+_bestMoveNum: 128
+initial _cutSize: 2220
+new _cutSize: 2219
+---------------------------------
+_iterNum: 9
+_accGain: 0
+_maxAccGain: 5
+_moveNum: 7000
+_bestMoveNum: 6952
+initial _cutSize: 2219
+new _cutSize: 2214
+---------------------------------
+_iterNum: 10
+_accGain: 0
+_maxAccGain: 13
+_moveNum: 7000
+_bestMoveNum: 328
+initial _cutSize: 2214
+new _cutSize: 2201
+---------------------------------
+_iterNum: 11
+_accGain: 0
+_maxAccGain: 4
+_moveNum: 7000
+_bestMoveNum: 172
+initial _cutSize: 2201
+new _cutSize: 2197
+---------------------------------
+_iterNum: 12
+_accGain: 0
+_maxAccGain: 2
+_moveNum: 7000
+_bestMoveNum: 328
+initial _cutSize: 2197
+new _cutSize: 2195
+---------------------------------
+_iterNum: 13
+_accGain: 0
+_maxAccGain: 2
+_moveNum: 7000
+_bestMoveNum: 6973
+initial _cutSize: 2195
+new _cutSize: 2193
+---------------------------------
+_iterNum: 14
+_accGain: 0
+_maxAccGain: 8
+_moveNum: 7000
+_bestMoveNum: 333
+initial _cutSize: 2193
+new _cutSize: 2185
+---------------------------------
+_iterNum: 15
+_accGain: 0
+_maxAccGain: 0
+_moveNum: 7000
+_bestMoveNum: 0
+initial _cutSize: 2185
+new _cutSize: 2185
+---------------------------------
+
+==================== Summary ====================
+ Cutsize: 2185
+ Total cell number: 7000
+ Total net number:  10000
+ Cell Number of partition A: 3429
+ Cell Number of partition B: 3571
+=================================================
+
+execution time: 0(sec)

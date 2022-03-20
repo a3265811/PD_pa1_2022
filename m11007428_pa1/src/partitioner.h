@@ -7,6 +7,7 @@
 #include <limits.h>
 #include "cell.h"
 #include "net.h"
+#include <ctime>
 using namespace std;
 
 class Partitioner
@@ -33,15 +34,19 @@ public:
 
     // modify method
     void parseInput(fstream& inFile);
-    void partition();
+    void partition(fstream& outFile);
 	void initialize();
+	void updating(int lower_bound, int upper_bound);
+	void recording();
+	void insertNode(Node* node, int part, int gain);
+	void deleteNode(Node* node, int part, int gain);
 
     // member functions about reporting
     void printSummary() const;
     void reportNet() const;
     void reportCell() const;
     void writeResult(fstream& outFile);
-	void printBList();
+	void printBList(fstream& outFile);
 
 private:
     int                 _cutSize;       // cut size

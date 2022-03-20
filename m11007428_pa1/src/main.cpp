@@ -7,6 +7,8 @@ using namespace std;
 int main(int argc, char** argv)
 {
     fstream input, output;
+	int start,end;
+	start = time(NULL);
 
     if (argc == 3) {
         input.open(argv[1], ios::in);
@@ -28,9 +30,12 @@ int main(int argc, char** argv)
     }
 
     Partitioner* partitioner = new Partitioner(input);
-    partitioner->partition();
+    partitioner->partition(output);
     partitioner->printSummary();
-    partitioner->writeResult(output);
+	partitioner->writeResult(output);
+//	partitioner->printBList(output);
+	end = time(NULL);
+	cout << "execution time: " << end - start << "(sec)" << endl;
 
     return 0;
 }

@@ -1,0 +1,66 @@
+_iterNum: 1
+_accGain: 0
+_maxAccGain: 984
+_moveNum: 3000
+_bestMoveNum: 1209
+initial _cutSize: 2400
+new _cutSize: 1416
+---------------------------------
+_iterNum: 2
+_accGain: 0
+_maxAccGain: 111
+_moveNum: 3000
+_bestMoveNum: 514
+initial _cutSize: 1416
+new _cutSize: 1305
+---------------------------------
+_iterNum: 3
+_accGain: 0
+_maxAccGain: 22
+_moveNum: 3000
+_bestMoveNum: 437
+initial _cutSize: 1305
+new _cutSize: 1283
+---------------------------------
+_iterNum: 4
+_accGain: 0
+_maxAccGain: 25
+_moveNum: 3000
+_bestMoveNum: 250
+initial _cutSize: 1283
+new _cutSize: 1258
+---------------------------------
+_iterNum: 5
+_accGain: 0
+_maxAccGain: 11
+_moveNum: 3000
+_bestMoveNum: 206
+initial _cutSize: 1258
+new _cutSize: 1247
+---------------------------------
+_iterNum: 6
+_accGain: 0
+_maxAccGain: 7
+_moveNum: 3000
+_bestMoveNum: 150
+initial _cutSize: 1247
+new _cutSize: 1240
+---------------------------------
+_iterNum: 7
+_accGain: 0
+_maxAccGain: 0
+_moveNum: 3000
+_bestMoveNum: 0
+initial _cutSize: 1240
+new _cutSize: 1240
+---------------------------------
+
+==================== Summary ====================
+ Cutsize: 1240
+ Total cell number: 3000
+ Total net number:  5000
+ Cell Number of partition A: 1484
+ Cell Number of partition B: 1516
+=================================================
+
+execution time: 0(sec)
