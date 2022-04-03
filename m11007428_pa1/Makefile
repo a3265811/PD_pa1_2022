@@ -14,4 +14,4 @@ bin/$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o bin/$(EXECUTABLE)
+	rm -rf *.o bin/$(EXECUTABLE) output*

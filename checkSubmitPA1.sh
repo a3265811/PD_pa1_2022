@@ -105,7 +105,7 @@ if [ ! -f ${readme} ]; then
     exit 2
 fi
 
-bin=${stu_dir}/fm
+bin=${stu_dir}/bin/fm
 echo "[Info] Checking \"${bin}\" ..."
 if [ ! -f ${bin} ]; then
     echo "**ERROR** Cannot find \"${bin}\""

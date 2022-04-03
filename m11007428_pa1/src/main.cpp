@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 	partitioner->writeResult(output);
 //	partitioner->printBList(output);
 	end = time(NULL);
-	cout << "execution time: " << end - start << "(sec)" << endl;
+//	cout << "execution time: " << end - start << "(sec)" << endl;
 
     return 0;
 }

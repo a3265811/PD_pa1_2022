@@ -7,7 +7,6 @@
 #include <limits.h>
 #include "cell.h"
 #include "net.h"
-#include <ctime>
 using namespace std;
 
 class Partitioner
@@ -35,8 +34,8 @@ public:
     // modify method
     void parseInput(fstream& inFile);
     void partition(fstream& outFile);
-	void initialize();
-	void updating(int lower_bound, int upper_bound);
+	void initialize(double lower_bound, double upper_bound);
+	void updating(double lower_bound, double upper_bound);
 	void recording();
 	void insertNode(Node* node, int part, int gain);
 	void deleteNode(Node* node, int part, int gain);

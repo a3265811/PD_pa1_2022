@@ -66,8 +66,10 @@ void Partitioner::parseInput(fstream& inFile)
 void Partitioner::partition(fstream& outFile)
 {
 	// calculate balance bound
-	int lower_bound = (1 - _bFactor) / 2 * _cellNum;
-	int upper_bound = (1 + _bFactor) / 2 * _cellNum;
+	double lower_bound = (1 - _bFactor) / 2 * _cellNum;
+	double upper_bound = (1 + _bFactor) / 2 * _cellNum;
+/*	cout << "lower_bound: " << lower_bound << endl;
+	cout << "upper_bound: " << upper_bound << endl;*/
 	// move half of cells into B part
 	// find maximum pin number
 	// calculate part size
@@ -129,10 +131,16 @@ void Partitioner::partition(fstream& outFile)
 			_cellArray[i]->unlock();
 			_cellArray[i]->setGain(0);
 		}
-		initialize();
+		initialize(lower_bound, upper_bound);
 		int ini_cutSize = _cutSize;
+		double r = (double)rand() / (RAND_MAX + 1.0);
 		for(int i = 0; i < _cellNum; i++){
-		/*	cout << "now move: " << i << endl;
+			/*int counter = 0;
+			if(_cellArray[_maxGainCell->getId()]->getGain() < 0 )
+				counter++;
+			if(counter > r * _cellNum)
+				break;*/
+/*			cout << "now move: " << i << endl;
 			cout << "_accGain: " << _accGain << endl;
 			cout << "_maxAccGain: " << _maxAccGain << endl;
 			cout << "_moveNum: " << _moveNum << endl;
@@ -144,19 +152,27 @@ void Partitioner::partition(fstream& outFile)
 			cout << "---------------------------------\n";*/
 			updating(lower_bound, upper_bound);
 		}
+		/*
+		cout << "iteration result:" << endl;
 		cout << "_iterNum: " << _iterNum << endl;
 		cout << "_accGain: " << _accGain << endl;
 		cout << "_maxAccGain: " << _maxAccGain << endl;
 		cout << "_moveNum: " << _moveNum << endl;
 		cout << "_bestMoveNum: " << _bestMoveNum << endl;
 		cout << "initial _cutSize: " << ini_cutSize << endl;
+		cout << "end of iteration result" << endl;
+		cout << "---------------------------------\n";*/
+
 		recording();
-		cout << "new _cutSize: " << _cutSize << endl;
-		cout << "---------------------------------\n";
+/*		cout << "new _cutSize: " << _cutSize << endl;
+		cout << "---------------------------------\n";*/
 	}
+/*	cout << "initial time: " << ini_clock << endl;
+	cout << "update time: " << max_clock << endl;
+	cout << "report time: " << report_clock << endl;*/
 }
 
-void Partitioner::initialize(){
+void Partitioner::initialize(double lower_bound, double upper_bound){
 	// cell gain initialize
 	for(int i = 0; i < _netNum; i++){
 		vector<int> cellList = _netArray[i]->getCellList();
@@ -178,8 +194,6 @@ void Partitioner::initialize(){
 		}
 	}
 	// insert all cell into _bList
-	// find _maxGainCell
-	int maxGain = INT_MIN;
 	for(int i = 0; i < _cellNum; i++){
 		int cellGain = 0;
 		if(!_cellArray[i]->getPart()){
@@ -194,17 +208,36 @@ void Partitioner::initialize(){
 			insertNode(tempNode, 1, cellGain);
 			_cellArray[i]->setNode(tempNode);
 		}
-		maxGain = maxGain > cellGain ? maxGain : cellGain;
 	}
-	if(_bList[0][maxGain]->getId() != -1)
-		_maxGainCell = _bList[0][maxGain];
-	else
-		_maxGainCell = _bList[1][maxGain];
+
+	// find _maxGainCell
+	int unbalancedPart = -1;
+	if(_partSize[0]-1 < lower_bound)
+		unbalancedPart = 0;
+	else if(_partSize[0]+1 > upper_bound)
+		unbalancedPart = 1;
+	else if(_partSize[1]-1 < lower_bound)
+		unbalancedPart = 1;
+	else if(_partSize[1]+1 > upper_bound)
+		unbalancedPart = 0;
+	int maxGain = INT_MIN;
+	for(int i = 0; i < 2; i++){
+		if(unbalancedPart == i)
+			continue;
+		for(map<int, Node*>::iterator m_iter = _bList[i].begin(); m_iter != _bList[i].end(); m_iter++){
+			if(m_iter->second->getId() != -1 && maxGain < m_iter->first){
+				_maxGainCell = m_iter->second;
+				maxGain = m_iter->first;
+			}
+		}
+	}
+	
 }
 
-void Partitioner::updating(int lower_bound, int upper_bound){
+void Partitioner::updating(double lower_bound, double upper_bound){
 	map<int,int> oldAffectCells;
 	Cell* mvCell = _cellArray[_maxGainCell->getId()];
+	int mvCellGain = mvCell->getGain();
 	int from,to;
 	vector<int> netList = mvCell->getNetList();
 	//cout << "mvCell: " << _maxGainCell->getId() << endl;
@@ -219,15 +252,15 @@ void Partitioner::updating(int lower_bound, int upper_bound){
 	}
 	// cell movement and update some attributes
 	_moveStack.push_back(_maxGainCell->getId());
-	deleteNode(mvCell->getNode(), mvCell->getPart(), mvCell->getGain());
+	deleteNode(mvCell->getNode(), mvCell->getPart(), mvCellGain);
 	delete mvCell->getNode();
 	mvCell->setNode(NULL);
 	mvCell->move();
 	mvCell->lock();
-	_cutSize -= mvCell->getGain();
+	_cutSize -= mvCellGain;
 	_partSize[from]--;
 	_partSize[to]++;
-	_accGain += mvCell->getGain();
+	_accGain += mvCellGain;
 	_moveNum++;
 	if (_maxAccGain < _accGain){
 		_maxAccGain = _accGain;
@@ -298,13 +331,13 @@ void Partitioner::updating(int lower_bound, int upper_bound){
 	
 	// find _maxGainCell
 	int unbalancedPart = -1;
-	if(_partSize[0] < lower_bound)
+	if(_partSize[0]-1 < lower_bound)
 		unbalancedPart = 0;
-	else if(_partSize[0] > upper_bound)
+	else if(_partSize[0]+1 > upper_bound)
 		unbalancedPart = 1;
-	else if(_partSize[1] < lower_bound)
+	else if(_partSize[1]-1 < lower_bound)
 		unbalancedPart = 1;
-	else if(_partSize[1] > upper_bound)
+	else if(_partSize[1]+1 > upper_bound)
 		unbalancedPart = 0;
 	int maxGain = INT_MIN;
 	for(int i = 0; i < 2; i++){
@@ -363,7 +396,6 @@ void Partitioner::insertNode(Node* node, int part, int gain){
 	head->setPrev(node);
 	node->setNext(head);
 	_bList[part][gain] = node;
-	node->setPrev(NULL);
 }
 
 void Partitioner::deleteNode(Node* node, int part, int gain){
@@ -378,6 +410,7 @@ void Partitioner::deleteNode(Node* node, int part, int gain){
 	}
 	else
 		cout << "missing dummy point: _bList[" << part << "][" << gain << "]" << endl;
+	node->setPrev(NULL);
 }
 
 void Partitioner::printSummary() const
